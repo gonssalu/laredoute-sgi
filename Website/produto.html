@@ -78,9 +78,8 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 d-flex justify-content-center">
-                        <div id="containerThreeJS">
-                            GG
-                        </div>
+                        <canvas id="containerThreeJS">
+                        </canvas>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center mb-2">
@@ -120,8 +119,8 @@
                 <div class="row d-flex justify-content-center mb-2">
 
                     <div class="col-auto mb-2">
-                        <button id="btnToggleLuz" class="btn btn-info text-white d-flex align-items-center" type="button" onclick="toggleLuz();">
-                            <i class="bi-lightbulb me-2 d-flex align-items-center"></i>
+                        <button id="btnToggleLuz" class="btn btn-warning text-white d-flex align-items-center" type="button" onclick="toggleLuz();">
+                            <i class="bi-lightbulb-fill me-2 d-flex align-items-center"></i>
                             Luz
                         </button>
                     </div>
@@ -247,8 +246,12 @@
                 <p class="m-0 text-center text-light">Copyright &copy; La Redoute 2021</p>
             </div>
         </footer>
+        
     <script src="script/popper.min.js"></script>
     <script src="script/bootstrap.min.js"></script>
+    <script src="script/three-js/three.min.js"></script>
+    <script src="script/three-js/GLTFLoader.js"></script>
+    <script src="script/three-js/OrbitControls.js"></script>
     <script src="script/threejs-script.js"></script>
     <script src="script/3dsection.js"></script>
 </body>

@@ -20,10 +20,12 @@ function toggleLuz(){
         btn.classList.remove(classDisabled);
         btn.classList.add(classEnabled);
         btn.innerHTML = innerEnabled;
+        changeLightState(true); //Ligar a luz no threejs
     }else{
         btn.classList.remove(classEnabled);
         btn.classList.add(classDisabled);
         btn.innerHTML = innerDisabled;
+        changeLightState(false); //Desligar a luz no threejs
     }
 };
 
@@ -37,10 +39,12 @@ function togglePorta(num){
         btn.classList.remove(classDisabled);
         btn.classList.add(classEnabled);
         btn.innerHTML = innerEnabled;
+        openDoor(num); //Executar animação no threeJS
     }else{
         btn.classList.remove(classEnabled);
         btn.classList.add(classDisabled);
         btn.innerHTML = innerDisabled;
+        closeDoor(num); //Executar animação no threeJS
     }
 };
 
@@ -52,9 +56,11 @@ function toggleExtensao(){
         btn.classList.remove(classDisabled);
         btn.classList.add(classEnabled);
         btn.innerHTML = innerEnabled;
+        openExtension(); //Executar animação no threeJS
     }else{
         btn.classList.remove(classEnabled);
         btn.classList.add(classDisabled);
         btn.innerHTML = innerDisabled;
+        closeExtension(); //Executar animação no threeJS
     }
 };
