@@ -94,7 +94,7 @@
                         </select>
                     </div>
                     <div class="col-xl-2 col-4 d-flex justify-content-start">
-                        <button class="btn btn-primary text-white" style="width: 60%;" type="button">
+                        <button class="btn btn-primary text-white" style="width: 60%;" type="button" onclick="changeMaterial(1);">
                             Definir
                         </button>
                     </div>
@@ -104,14 +104,14 @@
                         Material da Mesa:
                     </div>
                     <div class="col-xl-2 col-4 d-flex justify-content-center">
-                        <select id="selMatTampo" class="form-select" aria-label="Selecione o material do tampo">
+                        <select id="selMatMesa" class="form-select" aria-label="Selecione o material do tampo">
                             <option selected value="1">Madeira (Acácia)</option>
                             <option value="2">Madeira 2</option>
                             <option value="3">Mármore</option>
                         </select>
                     </div>
                     <div class="col-xl-2 col-4 d-flex justify-content-start">
-                        <button class="btn btn-primary text-white" style="width: 60%;" type="button">
+                        <button class="btn btn-primary text-white" style="width: 60%;" type="button" onclick="changeMaterial(2);">
                             Definir
                         </button>
                     </div>
@@ -119,10 +119,16 @@
                 <div class="row d-flex justify-content-center mb-2">
 
                     <div class="col-auto mb-2">
-                        <button id="btnToggleLuz" class="btn btn-warning text-white d-flex align-items-center" type="button" onclick="toggleLuz();">
-                            <i class="bi-lightbulb-fill me-2 d-flex align-items-center"></i>
-                            Luz
-                        </button>
+                        <div class="btn-group">
+                            <button id="btnToggleLuz" class="btn btn-warning text-white d-flex align-items-center" type="button" onclick="toggleLuz();">
+                                <i class="bi-lightbulb-fill me-2 d-flex align-items-center"></i>
+                                Luz
+                            </button>
+                            <button id="btnToggleBg" class="btn btn-info text-white d-flex align-items-center" type="button" onclick="toggleBg();">
+                                <i class="bi-circle-fill me-2 d-flex align-items-center"></i>
+                                Fundo
+                            </button>
+                        </div>
                     </div>
                     <div class="col-auto mb-2">
                         <div class="btn-group">

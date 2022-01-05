@@ -64,3 +64,36 @@ function toggleExtensao(){
         closeExtension(); //Executar animação no threeJS
     }
 };
+
+function changeMaterial(num){
+    let value;
+    switch(num){
+        case 1:
+            value = document.getElementById('selMatTampo').value;
+            updateTampoMaterial(value);
+            break;
+        case 2:
+            value = document.getElementById('selMatMesa').value;
+            updateMesaMaterial(value);
+            break;
+    }
+};
+
+function toggleBg(){
+    let classDisabled = 'btn-warning';
+    let classEnabled = 'btn-info';
+    let innerDisabled = '<i class="bi-circle me-2 d-flex align-items-center"></i>Fundo';
+    let innerEnabled = '<i class="bi-circle-fill me-2 d-flex align-items-center"></i>Fundo';
+    let btn = document.getElementById('btnToggleBg');
+    if(btn.classList.contains(classDisabled)){
+        btn.classList.remove(classDisabled);
+        btn.classList.add(classEnabled);
+        btn.innerHTML = innerEnabled;
+        changeBgState(false); //Alterar o background para preto
+    }else{
+        btn.classList.remove(classEnabled);
+        btn.classList.add(classDisabled);
+        btn.innerHTML = innerDisabled;
+        changeBgState(true); //Alterar o background para branco
+    }
+}

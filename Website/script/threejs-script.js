@@ -2,11 +2,12 @@ var T_WIDTH = 600;
 var T_HEIGHT = 450;
 
 var container = document.getElementById('containerThreeJS');
-container.style="border: 1px solid #000;width: "+T_WIDTH+"px; height:"+T_HEIGHT+"px;";
+container.style="width: "+T_WIDTH+"px; height:"+T_HEIGHT+"px;";
 
 // criar uma cena...
 var cena = new THREE.Scene();
-cena.background = new THREE.Color( 0xffffff );
+
+//cena.background = new THREE.Color( 0xffffff );
 
 var clock = new THREE.Clock();
 var misturador = new THREE.AnimationMixer(cena);
@@ -16,8 +17,25 @@ var carregador = new THREE.GLTFLoader();
 /* Alguns Objetos */
 var tampo, mesa;
 
+var matWoodA, matWood2, matMarb;
+
+// immediately use the texture for material creation
+
+matWoodA = (new THREE.TextureLoader()).load('resources/wood.png');
+matWood2 = (new THREE.TextureLoader()).load('resources/wood2.jpg');
+matMarb = (new THREE.TextureLoader()).load('resources/marble.jpg');
+
 //Luz
-var luzPonto1 = new THREE.AmbientLight( 0x404040 );
+var corLuz = 0xf0f0f0;
+var luzAmbiente = new THREE.AmbientLight( 0x404040 );
+var luzPonto1 = new THREE.PointLight( corLuz );
+var luzPonto2 = new THREE.PointLight( corLuz );
+var luzPonto3 = new THREE.PointLight( corLuz );
+var luzPonto4 = new THREE.PointLight( corLuz );
+var luzPonto5 = new THREE.PointLight( corLuz );
+var luzPonto6 = new THREE.PointLight( corLuz );
+
+var luzesPontos = [luzPonto1, luzPonto2, luzPonto3, luzPonto4, luzPonto5, luzPonto6];
 
 /* Algumas Animações */
 var abrirPorta1, abrirPorta2, abrirExtensao1_1, abrirExtensao1_2;
@@ -31,8 +49,19 @@ carregador.load(
         
     cena.add( gltf.scene );
 
-    luzPonto1.intensity = 8;
-    cena.add( luzPonto1 );
+    luzPonto1.position.set(8,2,0);
+    luzPonto2.position.set(-9,3,0);
+    luzPonto3.position.set(0,2,8);
+    luzPonto4.position.set(0, 2 ,-8);
+    luzPonto5.position.set(0,-12,0);
+    luzPonto6.position.set(0,18,0);
+
+    cena.add( luzAmbiente );
+    luzAmbiente.intensity=4;
+    
+    luzesPontos.forEach(function(luz) {
+        cena.add(luz);
+    });
 
     let clipe = THREE.AnimationClip.findByName( gltf.animations, 'abrirExtensao1_1' );
     abrirExtensao1_1 = misturador.clipAction( clipe );
@@ -57,9 +86,9 @@ carregador.load(
             elemento.receiveShadow = true;
             elemento.castShadow = true;
         }
-        if(elemento.name == 'stoneBench'){
+        if(elemento.name === 'stoneBench'){
             tampo = elemento;
-        }else if(elemento.name == 'workBench'){
+        }else if(elemento.name === 'workBench'){
             mesa = elemento;
         }
     });
@@ -95,9 +124,11 @@ function animar() {
 }
 
 function changeLightState(state){
-    if(luzPonto1 == null)
+    luzesPontos.forEach(function(luz) {
+        if(luz == null)
         return;
-    luzPonto1.visible = state;
+        luz.visible = state;
+    });
 }
 
 function runAnimation(animation, scale){
@@ -136,4 +167,28 @@ function closeExtension(){
     runAnimation(abrirExtensao1_1, -1);
 }
 
+function getMaterial(num){
+    switch(num){
+        case "1":
+            return matWoodA;
+        case "2":
+            return matWood2;
+        case "3":
+            return matMarb;
+        default:
+            return matWoodA;
+    }
+}
 
+function updateTampoMaterial(val){
+    tampo.material.map = getMaterial(val);
+}
+
+function updateMesaMaterial(val){
+    mesa.material.map = getMaterial(val);
+}
+
+function changeBgState(state){
+    let color = (state?new THREE.Color( 0xffffff ):new THREE.Color( 0x000000 ))
+    cena.background = color;
+}
