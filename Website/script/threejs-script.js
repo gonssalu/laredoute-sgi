@@ -127,7 +127,7 @@ function changeLightState(state){
     luzesPontos.forEach(function(luz) {
         if(luz == null)
         return;
-        luz.visible = state;
+        luz.intensity = state;
     });
 }
 
@@ -182,10 +182,14 @@ function getMaterial(num){
 
 function updateTampoMaterial(val){
     tampo.material.map = getMaterial(val);
+    tampo.receiveShadow = true;
+    tampo.castShadow = true;
 }
 
 function updateMesaMaterial(val){
     mesa.material.map = getMaterial(val);
+    mesa.receiveShadow = true;
+    mesa.castShadow = true;
 }
 
 function changeBgState(state){
